@@ -1,8 +1,9 @@
 package com.ejercicio.api;
 
-import com.ejercicio.controller.ClientController;
+import com.ejercicio.controller.ShippingDetailsController;
 import com.ejercicio.dto.ClientDto;
-import com.ejercicio.services.ClientService;
+import com.ejercicio.dto.ShippingDetailsDto;
+import com.ejercicio.services.ShippingDetailsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,14 +23,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ClientController.class)
+@WebMvcTest(controllers = ShippingDetailsController.class)
 @ExtendWith(MockitoExtension.class)
-public class ClientControllerTest {
+public class ShippingDetailsControllerTest {
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
-    private ClientService clientService;
+    private ShippingDetailsService shippingDetailsService;
 
 
     @BeforeEach
@@ -38,19 +39,19 @@ public class ClientControllerTest {
 
     @Test
     void whenGetAllClients_thenReturnListClients() throws Exception {
-        ClientDto client = new ClientDto();
-        client.setId(1L);
-        client.setName("Limon");
-        client.setEmail("diegolife@gmail.com");
-        client.setAddress("Calle 1");
+        ShippingDetailsDto shippingDetails = new ShippingDetailsDto();
+        shippingDetails.setId(1L);
+        shippingDetails.setAddress("Calle 7");
+        shippingDetails.setShippingCompany("MrFast");
+        shippingDetails.setNumberReference(123);
 
-        List<ClientDto> clientDtoList = new ArrayList<>();
+        List<ShippingDetailsDto> shippingDetailsList = new ArrayList<>();
 
-        clientDtoList.add(client);
+        shippingDetailsList.add(shippingDetails);
 
-        when(clientService.findAll()).thenReturn(clientDtoList);
+        when(shippingDetailsService.findAll()).thenReturn(shippingDetailsList);
 
-        mockMvc.perform(get("/api/v1/clients")
+        mockMvc.perform(get("/api/v1/shippingDetails")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));

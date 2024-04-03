@@ -1,8 +1,8 @@
 package com.ejercicio.api;
 
-import com.ejercicio.controller.ClientController;
-import com.ejercicio.dto.ClientDto;
-import com.ejercicio.services.ClientService;
+import com.ejercicio.controller.OrderItemController;
+import com.ejercicio.dto.OrderItemDto;
+import com.ejercicio.services.OrderItemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,14 +22,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ClientController.class)
+@WebMvcTest(controllers = OrderItemController.class)
 @ExtendWith(MockitoExtension.class)
-public class ClientControllerTest {
+public class OrderItemControllerTest {
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
-    private ClientService clientService;
+    private OrderItemService orderItemService;
 
 
     @BeforeEach
@@ -38,19 +38,18 @@ public class ClientControllerTest {
 
     @Test
     void whenGetAllClients_thenReturnListClients() throws Exception {
-        ClientDto client = new ClientDto();
-        client.setId(1L);
-        client.setName("Limon");
-        client.setEmail("diegolife@gmail.com");
-        client.setAddress("Calle 1");
+        OrderItemDto order = new OrderItemDto();
+        order.setId(1L);
+        order.setUnitPrice(20.3);
+        order.setAmount(5);
 
-        List<ClientDto> clientDtoList = new ArrayList<>();
+        List<OrderItemDto> orderItemDtoList = new ArrayList<>();
 
-        clientDtoList.add(client);
+        orderItemDtoList.add(order);
 
-        when(clientService.findAll()).thenReturn(clientDtoList);
+        when(orderItemService.findAll()).thenReturn(orderItemDtoList);
 
-        mockMvc.perform(get("/api/v1/clients")
+        mockMvc.perform(get("/api/v1/orderItems")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));

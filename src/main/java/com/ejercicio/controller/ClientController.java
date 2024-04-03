@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Validated
 @RequestMapping("/api/v1/clients")
 public class ClientController {
     private final ClientService clientService;
@@ -25,9 +24,9 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") Long idUsuario){
+    public ResponseEntity<?> getById(@PathVariable("id") Long id){
         try {
-            return ResponseEntity.ok().body(clientService.findById(idUsuario));
+            return ResponseEntity.ok().body(clientService.findById(id));
         }catch (DataNotFoundException e){
             return ResponseEntity.notFound().build();
         }
@@ -37,7 +36,7 @@ public class ClientController {
     public ResponseEntity<?> getByEmail(@PathVariable String email){
         ClientDto client = clientService.searchByEmail(email);
         if (client == null){
-            return ResponseEntity.badRequest().body("Customer not found");
+            return ResponseEntity.badRequest().body("Client not found");
         }
         return ResponseEntity.ok().body(client);
     }
@@ -46,7 +45,7 @@ public class ClientController {
     public ResponseEntity<?> getByAddress(@PathVariable String address){
         List<ClientDto> client = clientService.searchByAddress(address);
         if (client.isEmpty()){
-            return ResponseEntity.badRequest().body("Customer not found");
+            return ResponseEntity.badRequest().body("Client not found");
         }
         return ResponseEntity.ok().body(client);
     }
@@ -55,7 +54,7 @@ public class ClientController {
     public ResponseEntity<?> getByName(@PathVariable String name){
         List<ClientDto> client = clientService.searchByName(name);
         if (client.isEmpty()){
-            return ResponseEntity.badRequest().body("Customer not found");
+            return ResponseEntity.badRequest().body("Client not found");
         }
         return ResponseEntity.ok().body(client);
     }

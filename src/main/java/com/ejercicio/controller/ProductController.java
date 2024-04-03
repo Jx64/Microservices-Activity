@@ -23,28 +23,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") Long idUsuario){
+    public ResponseEntity<?> getById(@PathVariable("id") Long id){
         try {
-            return ResponseEntity.ok().body(productService.findById(idUsuario));
+            return ResponseEntity.ok().body(productService.findById(id));
         }catch (DataNotFoundException e){
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @PostMapping
-    public ResponseEntity<?> save(@RequestBody ProductDto productDto) {
-        return ResponseEntity.ok(productService.save(productDto));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ProductDto productDto) {
-        return ResponseEntity.ok().body(productService.update(id, productDto));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        productService.deleteById(id);
-        return ResponseEntity.ok().body("Product deleted");
     }
 
     @GetMapping("/search/{name}")
@@ -72,5 +56,21 @@ public class ProductController {
             return ResponseEntity.badRequest().body("Product not found");
         }
         return ResponseEntity.ok().body(product);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody ProductDto productDto) {
+        return ResponseEntity.ok(productService.save(productDto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ProductDto productDto) {
+        return ResponseEntity.ok().body(productService.update(id, productDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        productService.deleteById(id);
+        return ResponseEntity.ok().body("Product deleted");
     }
 }

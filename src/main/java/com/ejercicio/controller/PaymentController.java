@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/payment")
+@RequestMapping("/api/v1/payments")
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -24,12 +24,30 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") Long idUsuario){
+    public ResponseEntity<?> getById(@PathVariable("id") Long id){
         try {
-            return ResponseEntity.ok().body(paymentService.findById(idUsuario));
+            return ResponseEntity.ok().body(paymentService.findById(id));
         }catch (DataNotFoundException e){
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/date")
+    public ResponseEntity<?> getByName(@RequestParam LocalDate start, @RequestParam LocalDate end){
+        List<PaymentDto> payment = paymentService.searchByFecha(start, end);
+        if (payment.isEmpty()){
+            return ResponseEntity.badRequest().body("Payment not found");
+        }
+        return ResponseEntity.ok().body(payment);
+    }
+
+    @GetMapping("/order/{id}")
+    public ResponseEntity<?> getByName(@PathVariable Long id, @RequestParam String method){
+        List<PaymentDto> payment = paymentService.searchByPedidoAndPaymentMethod(id, method);
+        if (payment.isEmpty()){
+            return ResponseEntity.badRequest().body("Payment not found");
+        }
+        return ResponseEntity.ok().body(payment);
     }
 
     @PostMapping
@@ -45,24 +63,6 @@ public class PaymentController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         paymentService.deleteById(id);
-        return ResponseEntity.ok().body("Product deleted");
-    }
-
-    @GetMapping("/date")
-    public ResponseEntity<?> getByName(@RequestParam LocalDate start, @RequestParam LocalDate end){
-        List<PaymentDto> payment = paymentService.searchByFecha(start, end);
-        if (payment.isEmpty()){
-            return ResponseEntity.badRequest().body("Product not found");
-        }
-        return ResponseEntity.ok().body(payment);
-    }
-
-    @GetMapping("/order/{id}")
-    public ResponseEntity<?> getByName(@PathVariable Long id, @RequestParam String method){
-        List<PaymentDto> payment = paymentService.searchByPedidoAndPaymentMethod(id, method);
-        if (payment.isEmpty()){
-            return ResponseEntity.badRequest().body("Product not found");
-        }
-        return ResponseEntity.ok().body(payment);
+        return ResponseEntity.ok().body("Payment deleted");
     }
 }
