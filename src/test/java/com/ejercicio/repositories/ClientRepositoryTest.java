@@ -2,7 +2,6 @@ package com.ejercicio.repositories;
 
 import com.ejercicio.AbstractIntegrationDBTest;
 import com.ejercicio.entities.Client;
-import com.ejercicio.src.MockDataInitializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
