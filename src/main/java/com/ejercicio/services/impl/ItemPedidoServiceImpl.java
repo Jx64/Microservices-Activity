@@ -4,7 +4,6 @@ import com.ejercicio.dto.ItemPedidoDto;
 import com.ejercicio.dto.mapper.ItemPedidoMapper;
 import com.ejercicio.exceptions.CannotSaveException;
 import com.ejercicio.exceptions.DataNotFoundException;
-import com.ejercicio.repositories.ItemPedidoRepository;
 import com.ejercicio.services.ItemPedidoService;
 
 import java.util.List;

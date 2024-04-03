@@ -4,7 +4,6 @@ import com.ejercicio.dto.PagoDto;
 import com.ejercicio.dto.mapper.PagoMapper;
 import com.ejercicio.exceptions.CannotSaveException;
 import com.ejercicio.exceptions.DataNotFoundException;
-import com.ejercicio.repositories.PagoRepository;
 import com.ejercicio.services.PagoService;
 import org.springframework.stereotype.Service;
 

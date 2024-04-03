@@ -4,7 +4,6 @@ import com.ejercicio.dto.ClienteDto;
 import com.ejercicio.dto.mapper.ClienteMapper;
 import com.ejercicio.exceptions.CannotSaveException;
 import com.ejercicio.exceptions.DataNotFoundException;
-import com.ejercicio.repositories.ClienteRepository;
 import com.ejercicio.services.ClienteService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

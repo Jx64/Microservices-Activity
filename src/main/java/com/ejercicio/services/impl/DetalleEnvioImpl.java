@@ -4,7 +4,6 @@ import com.ejercicio.dto.DetalleEnvioDto;
 import com.ejercicio.dto.mapper.DetalleEnvioMapper;
 import com.ejercicio.exceptions.CannotSaveException;
 import com.ejercicio.exceptions.DataNotFoundException;
-import com.ejercicio.repositories.DetalleEnvioRepository;
 import com.ejercicio.services.DetalleEnvioService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
