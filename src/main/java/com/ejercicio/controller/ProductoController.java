@@ -1,7 +1,6 @@
 package com.ejercicio.controller;
 
 import com.ejercicio.dto.ProductoDto;
-import com.ejercicio.entities.Producto;
 import com.ejercicio.services.ProductoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

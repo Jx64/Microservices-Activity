@@ -1,6 +1,5 @@
 package com.ejercicio.dto;
 
-import com.ejercicio.entities.Pedido;
 import lombok.Data;
 
 @Data

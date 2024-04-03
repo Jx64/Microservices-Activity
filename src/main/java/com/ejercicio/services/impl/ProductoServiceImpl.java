@@ -2,7 +2,6 @@ package com.ejercicio.services.impl;
 
 import com.ejercicio.dto.ProductoDto;
 import com.ejercicio.dto.mapper.ProductoMapper;
-import com.ejercicio.entities.Producto;
 import com.ejercicio.exceptions.CannotSaveException;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.repositories.ProductoRepository;

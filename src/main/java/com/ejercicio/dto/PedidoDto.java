@@ -1,7 +1,5 @@
 package com.ejercicio.dto;
 
-import com.ejercicio.entities.Cliente;
-import com.ejercicio.entities.enums.PedidoStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;

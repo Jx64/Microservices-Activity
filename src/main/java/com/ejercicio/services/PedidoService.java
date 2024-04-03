@@ -1,11 +1,6 @@
 package com.ejercicio.services;
 
 import com.ejercicio.dto.PedidoDto;
-import com.ejercicio.entities.Cliente;
-import com.ejercicio.entities.Pedido;
-import com.ejercicio.entities.enums.MetodoPago;
-import com.ejercicio.entities.enums.PedidoStatus;
-import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;

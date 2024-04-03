@@ -1,9 +1,6 @@
 package com.ejercicio.services;
 
 import com.ejercicio.dto.PagoDto;
-import com.ejercicio.entities.Pago;
-import com.ejercicio.entities.Pedido;
-import com.ejercicio.entities.enums.MetodoPago;
 
 import java.time.LocalDate;
 import java.util.List;

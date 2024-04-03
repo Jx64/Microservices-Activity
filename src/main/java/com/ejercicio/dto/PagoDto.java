@@ -1,7 +1,5 @@
 package com.ejercicio.dto;
 
-import com.ejercicio.entities.Pedido;
-import com.ejercicio.entities.enums.MetodoPago;
 import lombok.Data;
 
 import java.time.LocalDate;

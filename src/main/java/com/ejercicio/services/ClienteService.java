@@ -1,7 +1,6 @@
 package com.ejercicio.services;
 
 import com.ejercicio.dto.ClienteDto;
-import com.ejercicio.entities.Cliente;
 
 import java.util.List;
 

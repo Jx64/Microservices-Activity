@@ -1,7 +1,6 @@
 package com.ejercicio.dto.mapper;
 
 import com.ejercicio.dto.ClienteDto;
-import com.ejercicio.entities.Cliente;
 import org.mapstruct.Mapper;
 
 @Mapper

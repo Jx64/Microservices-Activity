@@ -2,9 +2,6 @@ package com.ejercicio.services.impl;
 
 import com.ejercicio.dto.DetalleEnvioDto;
 import com.ejercicio.dto.mapper.DetalleEnvioMapper;
-import com.ejercicio.entities.DetalleEnvio;
-import com.ejercicio.entities.Pedido;
-import com.ejercicio.entities.enums.PedidoStatus;
 import com.ejercicio.exceptions.CannotSaveException;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.repositories.DetalleEnvioRepository;

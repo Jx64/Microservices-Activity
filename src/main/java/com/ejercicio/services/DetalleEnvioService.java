@@ -2,9 +2,6 @@ package com.ejercicio.services;
 
 
 import com.ejercicio.dto.DetalleEnvioDto;
-import com.ejercicio.entities.DetalleEnvio;
-import com.ejercicio.entities.Pedido;
-import com.ejercicio.entities.enums.PedidoStatus;
 
 import java.util.List;
 

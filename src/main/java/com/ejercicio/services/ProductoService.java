@@ -1,7 +1,6 @@
 package com.ejercicio.services;
 
 import com.ejercicio.dto.ProductoDto;
-import com.ejercicio.entities.Producto;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;

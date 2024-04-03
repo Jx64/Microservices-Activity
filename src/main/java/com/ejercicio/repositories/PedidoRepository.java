@@ -1,10 +1,5 @@
 package com.ejercicio.repositories;
 
-import com.ejercicio.entities.Cliente;
-import com.ejercicio.entities.Pedido;
-import com.ejercicio.entities.Producto;
-import com.ejercicio.entities.enums.PedidoStatus;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

@@ -2,10 +2,6 @@ package com.ejercicio.services.impl;
 
 import com.ejercicio.dto.PagoDto;
 import com.ejercicio.dto.mapper.PagoMapper;
-import com.ejercicio.entities.Pago;
-import com.ejercicio.entities.Pedido;
-import com.ejercicio.entities.Producto;
-import com.ejercicio.entities.enums.MetodoPago;
 import com.ejercicio.exceptions.CannotSaveException;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.repositories.PagoRepository;
