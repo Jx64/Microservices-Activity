@@ -1,8 +1,10 @@
 package com.ejercicio.entities;
 
 import com.ejercicio.entities.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
@@ -19,6 +21,8 @@ public class Order {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "order_date",nullable = false)
     private LocalDate orderDate;
 
