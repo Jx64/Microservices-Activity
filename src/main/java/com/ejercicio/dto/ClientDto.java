@@ -1,11 +1,11 @@
 package com.ejercicio.dto;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class ClientDto {
-    Long id;
-    String name;
-    String email;
-    String address;
+    private Long id;
+    private String name;
+    private String email;
+    private String address;
 }

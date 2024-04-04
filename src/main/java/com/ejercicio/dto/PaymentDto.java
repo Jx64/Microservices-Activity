@@ -1,5 +1,6 @@
 package com.ejercicio.dto;
 
+import com.ejercicio.entities.Order;
 import com.ejercicio.entities.enums.PaymentMethod;
 import lombok.Data;
 
@@ -11,4 +12,5 @@ public class PaymentDto {
     private double paymentTotal;
     private LocalDate paymentDate;
     private PaymentMethod paymentMethod;
+    private Order fkOrder;
 }
