@@ -2,6 +2,7 @@ package com.ejercicio.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.lang.reflect.Field;
 
 @Entity
 @Table(name = "order_items")
@@ -26,4 +27,18 @@ public class OrderItem {
 
     @ManyToOne @JoinColumn(name = "fkProduct")
     private Product fkProduct;
+
+    public void updateWith(OrderItem entity){
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                Object value = field.get(entity);
+                if (value != null) {
+                    field.set(this, value);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

@@ -4,6 +4,7 @@ import com.ejercicio.entities.enums.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 
 @Entity
@@ -30,4 +31,18 @@ public class Payment {
 
     @OneToOne @JoinColumn(name = "fkOrder")
     private Order fkOrder;
+
+    public void updateWith(Payment entity){
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                Object value = field.get(entity);
+                if (value != null) {
+                    field.set(this, value);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

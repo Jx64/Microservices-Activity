@@ -3,6 +3,8 @@ package com.ejercicio.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.lang.reflect.Field;
+
 @Entity
 @Table(name = "shipping_details")
 @AllArgsConstructor
@@ -26,4 +28,18 @@ public class ShippingDetails {
 
     @OneToOne @JoinColumn(name = "fkOrder")
     private Order fkOrder;
+
+    public void updateWith(ShippingDetails entity){
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                Object value = field.get(entity);
+                if (value != null) {
+                    field.set(this, value);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

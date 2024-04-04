@@ -4,6 +4,7 @@ import com.ejercicio.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,4 +38,18 @@ public class Order {
 
     @OneToOne(mappedBy = "fkOrder")
     private ShippingDetails shippingDetails;
+
+    public void updateWith(Order entity){
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                Object value = field.get(entity);
+                if (value != null) {
+                    field.set(this, value);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

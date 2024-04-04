@@ -3,6 +3,7 @@ package com.ejercicio.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 @Entity
@@ -27,4 +28,18 @@ public class Product {
 
     @OneToMany(mappedBy = "fkProduct")
     private List<OrderItem> orderItems;
+
+    public void updateWith(Product entity){
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                Object value = field.get(entity);
+                if (value != null) {
+                    field.set(this, value);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
