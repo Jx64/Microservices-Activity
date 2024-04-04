@@ -2,6 +2,7 @@ package com.ejercicio.services.impl;
 
 import com.ejercicio.dto.ClientDto;
 import com.ejercicio.entities.Client;
+import com.ejercicio.entities.Product;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.mapper.ClientMapper;
 import com.ejercicio.repositories.ClientRepository;
@@ -35,8 +36,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDto save(ClientDto entityDto) {
-        Client entity = clientMapper.clientDtoToCliente(entityDto);
+    public ClientDto save(ClientDto entitydDto) {
+        Client entity = clientMapper.clientDtoToCliente(entitydDto);
         return clientMapper.clientToClientDto(clientRepository.save(entity));
     }
 
@@ -45,8 +46,9 @@ public class ClientServiceImpl implements ClientService {
         Client entity = clientMapper.clientDtoToCliente(entityDto);
         Client data = clientRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Data wasn't found"));
-        Client entityUpdate = data;
-        data = clientRepository.save(entity);
+
+        data.updateWith(entity);
+        clientRepository.save(data);
         return clientMapper.clientToClientDto(data);
     }
 

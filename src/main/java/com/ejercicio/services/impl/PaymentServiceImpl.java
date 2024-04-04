@@ -45,8 +45,8 @@ public class PaymentServiceImpl implements PaymentService {
         Payment entity = paymentMapper.paymentDtoToPayment(entityDto);
         Payment data = paymentRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Data wasn't found"));
-        Payment entityUpdate = data;
-        data = paymentRepository.save(entity);
+        data.updateWith(entity);
+        paymentRepository.save(data);
         return paymentMapper.paymentToPaymentDto(data);
     }
 

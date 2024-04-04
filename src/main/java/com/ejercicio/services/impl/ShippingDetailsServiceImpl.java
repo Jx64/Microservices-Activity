@@ -45,8 +45,8 @@ public class ShippingDetailsServiceImpl implements ShippingDetailsService {
         ShippingDetails entity = shippingDetailsMapper.shippingDetailsDtoToShippingDetails(entityDto);
         ShippingDetails data = shippingDetailsRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Data wasn't found"));
-        ShippingDetails entityUpdate = data;
-        data = shippingDetailsRepository.save(entity);
+        data.updateWith(entity);
+        shippingDetailsRepository.save(data);
         return shippingDetailsMapper.shippingDetailsToShippingDetailsDto(data);
     }
 

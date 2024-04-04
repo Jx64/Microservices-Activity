@@ -46,8 +46,8 @@ public class OrderServiceImpl implements OrderService {
         Order entity = orderMapper.orderDtoToOrder(entityDto);
         Order data = orderRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Data wasn't found"));
-        Order entityUpdate = data;
-        data = orderRepository.save(entity);
+        data.updateWith(entity);
+        orderRepository.save(data);
         return orderMapper.orderToOrderDto(data);
     }
 

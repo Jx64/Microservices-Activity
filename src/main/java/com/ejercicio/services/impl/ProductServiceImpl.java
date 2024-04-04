@@ -45,8 +45,8 @@ public class ProductServiceImpl implements ProductService {
         Product entity = productMapper.productDtoToProduct(entityDto);
         Product data = productRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("Data wasn't found"));
-        Product entityUpdate = data;
-        data = productRepository.save(entity);
+        data.updateWith(entity);
+        productRepository.save(data);
         return productMapper.productToProductDto(data);
     }
 
