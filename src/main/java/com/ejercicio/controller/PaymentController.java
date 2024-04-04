@@ -52,7 +52,7 @@ public class PaymentController {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody PaymentDto paymentDto) {
-        return ResponseEntity.ok(paymentService.save(paymentDto));
+        return ResponseEntity.ok().body(paymentService.save(paymentDto));
     }
 
     @PutMapping("/{id}")

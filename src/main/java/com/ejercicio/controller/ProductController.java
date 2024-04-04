@@ -60,7 +60,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody ProductDto productDto) {
-        return ResponseEntity.ok(productService.save(productDto));
+        return ResponseEntity.ok().body(productService.save(productDto));
     }
 
     @PutMapping("/{id}")

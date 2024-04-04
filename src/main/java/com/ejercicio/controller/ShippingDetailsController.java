@@ -60,7 +60,7 @@ public class ShippingDetailsController {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody ShippingDetailsDto shippingDetailsDto) {
-        return ResponseEntity.ok(shippingDetailsService.save(shippingDetailsDto));
+        return ResponseEntity.ok().body(shippingDetailsService.save(shippingDetailsDto));
     }
 
     @PutMapping("/{id}")
