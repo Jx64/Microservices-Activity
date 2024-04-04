@@ -1,6 +1,7 @@
 package com.ejercicio.controller;
 
 import com.ejercicio.dto.ClientDto;
+import com.ejercicio.entities.Client;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.services.ClientService;
 import org.springframework.http.ResponseEntity;
@@ -60,13 +61,13 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody ClientDto clientDto) {
-        return ResponseEntity.ok(clientService.save(clientDto));
+    public ResponseEntity<?> save(@RequestBody ClientDto entity) {
+        return ResponseEntity.ok().body(clientService.save(entity));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ClientDto clientDto) {
-        return ResponseEntity.ok().body(clientService.update(id, clientDto));
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ClientDto entity) {
+        return ResponseEntity.ok().body(clientService.update(id, entity));
     }
 
     @DeleteMapping("/{id}")
