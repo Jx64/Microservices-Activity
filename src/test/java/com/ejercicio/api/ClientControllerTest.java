@@ -12,13 +12,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,28 +32,53 @@ public class ClientControllerTest {
     @MockBean
     private ClientService clientService;
 
-
     @BeforeEach
     void setUp() {
     }
 
     @Test
-    void whenGetAllClients_thenReturnListClients() throws Exception {
+    void getAllClients() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/clients")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$").exists());
+    }
+
+    @Test
+    void whenSave_thenReturns200AndBody() throws Exception {
         ClientDto client = new ClientDto();
         client.setId(1L);
-        client.setName("Limon");
-        client.setEmail("diegolife@gmail.com");
+        client.setName("Diego");
+        client.setEmail("diego@mail.com");
         client.setAddress("Calle 1");
 
-        List<ClientDto> clientDtoList = new ArrayList<>();
+        when(clientService.save(client)).thenReturn(client);
 
-        clientDtoList.add(client);
-
-        when(clientService.findAll()).thenReturn(clientDtoList);
-
-        mockMvc.perform(get("/api/v1/clients")
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/v1/clients")
+                        .content(new ObjectMapper().writeValueAsString(client))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(jsonPath("$.name").value("Diego"));
     }
+
+    @Test
+    void givenAnId_whenDeleteById_thenReturns200() throws Exception {
+        ClientDto client = new ClientDto();
+        client.setId(1L);
+        client.setName("Diego");
+        client.setEmail("diego@mail.com");
+        client.setAddress("Calle 1");
+
+        doNothing().when(clientService).deleteById(client.getId());
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/api/v1/clients/{id}", client.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
 }
