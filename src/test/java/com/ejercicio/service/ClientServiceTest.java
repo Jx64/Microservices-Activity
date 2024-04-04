@@ -1,6 +1,7 @@
 package com.ejercicio.service;
 
 import com.ejercicio.dto.ClientDto;
+import com.ejercicio.dto.ProductDto;
 import com.ejercicio.entities.Client;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.mapper.ClientMapper;
@@ -87,11 +88,10 @@ public class ClientServiceTest {
 
     @Test
     void givenCliente_whenUpdateCliente_thenUpdateCliente() {
-        ClientDto clienteUpdateDto = new ClientDto();
-        clienteUpdateDto.setId(1L);
-        clienteUpdateDto.setName("Diego");
-        clienteUpdateDto.setEmail("diegolife@gmail.com");
-        clienteUpdateDto.setAddress("Calle 2");
+        ClientDto clientDto = new ClientDto();
+        clientDto.setName("Diego");
+        clientDto.setEmail("diego@gmail.com");
+        clientDto.setAddress("Calle 1");
 
         Long test1 = 1L;
 
@@ -99,7 +99,7 @@ public class ClientServiceTest {
                 .willReturn(Optional.of(client));
 
         assertDoesNotThrow(() -> {
-            clientService.update(test1, clienteUpdateDto);
+            clientService.update(test1, clientDto);
         });
     }
 
