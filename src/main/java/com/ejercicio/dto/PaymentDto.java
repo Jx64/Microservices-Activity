@@ -1,6 +1,5 @@
 package com.ejercicio.dto;
 
-import com.ejercicio.entities.Order;
 import com.ejercicio.entities.enums.PaymentMethod;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

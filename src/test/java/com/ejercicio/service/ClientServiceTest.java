@@ -1,7 +1,6 @@
 package com.ejercicio.service;
 
 import com.ejercicio.dto.ClientDto;
-import com.ejercicio.dto.ProductDto;
 import com.ejercicio.entities.Client;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.mapper.ClientMapper;

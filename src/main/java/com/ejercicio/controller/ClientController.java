@@ -1,11 +1,9 @@
 package com.ejercicio.controller;
 
 import com.ejercicio.dto.ClientDto;
-import com.ejercicio.entities.Client;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.services.ClientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

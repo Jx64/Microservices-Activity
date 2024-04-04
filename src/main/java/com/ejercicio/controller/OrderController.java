@@ -60,8 +60,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody OrderDto orderDto) {
-        return ResponseEntity.ok().body(orderService.save(orderDto));
+    public ResponseEntity<?> save(@RequestBody OrderDto entity) {
+        return ResponseEntity.ok().body(orderService.save(entity));
     }
 
     @PutMapping("/{id}")

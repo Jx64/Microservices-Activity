@@ -2,7 +2,6 @@ package com.ejercicio.services.impl;
 
 import com.ejercicio.dto.ClientDto;
 import com.ejercicio.entities.Client;
-import com.ejercicio.entities.Product;
 import com.ejercicio.exceptions.DataNotFoundException;
 import com.ejercicio.mapper.ClientMapper;
 import com.ejercicio.repositories.ClientRepository;
